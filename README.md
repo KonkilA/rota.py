@@ -6,11 +6,11 @@ This is in development by a computer science first year, so don't expect perfect
 
 Usage
 -----
-Create input files. From the command line, run with the start and end dates as command line arguments in dd/mm/yy format:
+Create the two input files. From the command line, run with command line arguments: (start date(dd/mm/yy), end date(dd/mm/yy), output format(csv,tex))
 
-`python rota.py 15/11/14 12/12/14`
+`python rota.py 15/11/14 12/12/14 csv`
 
-The program will generate a csv file. The first row of the file is the rota table header, with the given task names. The remaining rows start with the week's start date(a Monday) followed by names allocated to tasks:
+The program will generate a rota.csv file in the current directory. The first row of the file is the rota table header, with the given task names. The remaining rows start with the week's start date(a Monday) followed by names allocated to tasks:
 
 <pre>
 Week Beginning,Kitchen,Bathroom,Halls,Rubbish
@@ -18,6 +18,18 @@ Week Beginning,Kitchen,Bathroom,Halls,Rubbish
 17/11/14,Matt,Suzie,Steve,Matt
 ...
 </pre>
+
+If tex is chosen, along with the csv the following rota.tex is written:
+
+<pre>
+\documentclass{article} 
+\usepackage{csvsimple} 
+\begin{document} 
+\csvautotabular{rota.csv} 
+\end{document})
+</pre>
+
+This can then be converted to pdf using a tool like pdflatex(not included).
 
 Installation & Configuration
 ----------------------------

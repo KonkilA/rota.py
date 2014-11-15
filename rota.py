@@ -1,4 +1,4 @@
-""" program to generate a CSV rota between a date range
+""" program to generate a rota between a date range
 given on the command line """
 
 import datetime
@@ -53,8 +53,25 @@ while ((endDate-currDate)>datetime.timedelta(hours=0)):
 
 #write the contents of a passed 2d rota array to rota.csv
 def makeCSV(table):
-  wr = csv.writer(open("rota.csv","w"), delimiter=',',quoting=csv.QUOTE_ALL)
+  wr = csv.writer(open("rota.csv","w"), delimiter=',',quoting=csv.QUOTE_MINIMAL)
   for row in table:
     wr.writerow(row)
 
-makeCSV(rotaTable)
+def makeTex(table):
+  makeCSV(table)
+  texFile=open("rota.tex","w")
+  texFile.write("\documentclass{article} \n"
+                +"\usepackage{csvsimple} \n"
+                +"\\"+"begin{document} \n"
+                +"\csvautotabular{rota.csv} \n"
+                +"\end{document})")
+
+if(sys.argv[3].lower()=="csv"):
+  print("Generating csv from txt files")
+  makeCSV(rotaTable)
+elif(sys.argv[3].lower()=="tex"):
+  print("Generating csv and tex from txt files")
+  makeTex(rotaTable)
+else:
+  print("Defualting to generating csv from txt files")
+  makeCSV(rotaTable)
