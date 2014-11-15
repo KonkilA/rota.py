@@ -4,9 +4,15 @@ Python based rota generator.
 
 This is in development by a computer science first year, so don't expect perfection.
 
+Installation & Configuration
+----------------------------
+Ensure you have installed python, and then download the script.
+
+Create a tasks.txt with each task on a new line, and a names.txt with each name on a new line.
+
 Usage
 -----
-Create the two input files. From the command line, run with command line arguments: (start date(dd/mm/yy), end date(dd/mm/yy), output format(csv,tex))
+Create the two input files. From the command line, run with command line arguments: start date(dd/mm/yy), end date(dd/mm/yy), output format(csv,tex)
 
 `python rota.py 15/11/14 12/12/14 csv`
 
@@ -30,9 +36,3 @@ If tex is chosen, along with the csv the following rota.tex is written:
 </pre>
 
 This can then be converted to pdf using a tool like pdflatex(not included).
-
-Installation & Configuration
-----------------------------
-Ensure you have installed python, and then download the script.
-
-Create a tasks.txt with each task on a new line, and a names.txt with each name on a new line.
