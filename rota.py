@@ -7,10 +7,10 @@ from itertools import cycle
 import csv
 from random import randrange
 
-#task and name arrays
-names=["Connor","Sivert","Tom","Alex","Vlad"]
+names=open('names.txt').read().splitlines()
+tasks=open('tasks.txt').read().splitlines()
+
 nameCycle=cycle(names)
-tasks=["Kitchen","Bathroom","Bins","Hoover"]
 
 #randomise the start position in the name cycle
 for i in range(randrange(len(names))):
