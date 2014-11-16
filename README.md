@@ -2,7 +2,7 @@ rota.py
 =======
 Python based rota generator.
 
-This is in development by a computer science first year, so don't expect perfection.
+This is in development by a computer science first year, so don't expect perfection. The script, given a list of names and tasks, fairly and randomly allocates tasks to names for a given timescale.
 
 Installation & Configuration
 ----------------------------

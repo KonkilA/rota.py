@@ -11,8 +11,6 @@ from random import shuffle
 names=open('names.txt').read().splitlines()
 tasks=open('tasks.txt').read().splitlines()
 
-nameCycle=cycle(names)
-
 #basic validation of command line args (there should be four)
 # - "filename startdate enddate outputformat"
 if len(sys.argv) < 4:
@@ -45,20 +43,31 @@ print(header)
 
 rotaTable=[header]
 
-#loop thorugh weeks, and keep track of which names mentioned
+#get a randomised, fairly distibuted list of names equal to |tasks|*|weeks|
+nameCycle=cycle(names)
 currDate=startDate
-namesDone=0;
+namesDistribution=[nameCycle.next()]
+namesDone=1
 while ((endDate-currDate)>datetime.timedelta(hours=0)):
-  row=[currDate.strftime("%d/%m/%y")]
-  #loop through tasks, and assign name to task
   for task in tasks:
-    #if all names have been mentioned, shuffle their order before assigning
+    #add the next name to the distribution
+    namesDistribution+=[nameCycle.next()]
+    namesDone += 1
+    #if all names have been mentioned, shuffle their order before retracing
     if namesDone == len(names):
       shuffle(names)
       nameCycle=cycle(names)
       namesDone=0
-    row.append(nameCycle.next())
-    namesDone += 1
+  currDate += datetime.timedelta(days=7)
+
+namesDistributionCycle=cycle(namesDistribution)
+#for each week, assign one name to one task, storing order by row in rotaTable[]
+currDate=startDate
+while ((endDate-currDate)>datetime.timedelta(hours=0)):
+  row=[currDate.strftime("%d/%m/%y")]
+  #loop through tasks, and assign name to task from distribution
+  for task in tasks:
+    row.append(namesDistributionCycle.next())
   print(row)
   rotaTable.append(row)
   currDate += datetime.timedelta(days=7)
@@ -86,5 +95,5 @@ elif(sys.argv[3].lower()=="tex"):
   print("Generated csv and tex from txt files")
   makeTex(rotaTable)
 else:
-  print("Defualted to generating csv from txt files")
+  print("Defaulted to generating csv from txt files")
   makeCSV(rotaTable)
