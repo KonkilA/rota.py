@@ -8,7 +8,22 @@ Installation & Configuration
 ----------------------------
 Ensure you have installed python, and then download the script.
 
-Create a tasks.txt with each task on a new line, and a names.txt with each name on a new line.
+In the smae directory as rota.py, create a tasks.txt with each task on a new line, and a names.txt with each name on a new line:
+
+names.txt
+<pre>
+Steve
+Matt
+Suzie
+</pre>
+
+tasks.txt
+<pre>
+Kitchen
+Bathroom
+Halls
+Rubbish
+</pre>
 
 Usage
 -----
